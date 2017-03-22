@@ -24,11 +24,15 @@ public class DevicesDAO extends AbstractDAO<Device> {
 
     @Override
     public void insert(Device item) {
-        try {
-            SqlStatement.insert(Device.class).execute();
-        } catch (DataConnectionException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            SqlStatement.insert(Device.class).execute();
+//        } catch (DataConnectionException e) {
+//            e.printStackTrace();
+//        }
+
+        /**
+         * http://ormlite.com/javadoc/ormlite-core/doc-files/ormlite_1.html#Getting-Started
+         * */
     }
 
     @Override
