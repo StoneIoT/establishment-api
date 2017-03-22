@@ -1,6 +1,7 @@
 package com.iot.resources
 
 import com.google.gson.Gson
+import com.iot.database.dao.DevicesDAO
 import com.iot.model.Device
 import com.iot.model.User
 import java.util.*
@@ -25,6 +26,7 @@ class UserResource {
         val device: Device = Gson().fromJson(deviceReceived, Device::class.java)
         val userToken = User(UUID.randomUUID().toString())
 
+        DevicesDAO.getInstance().insert(device)
         return Gson().toJson(userToken)
     }
 

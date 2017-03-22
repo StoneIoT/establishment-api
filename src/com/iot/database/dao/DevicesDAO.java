@@ -1,7 +1,9 @@
 package com.iot.database.dao;
 
-import com.iot.database.DatabaseJDBC;
 import com.iot.model.Device;
+import com.njkremer.Sqlite.DataConnectionException;
+import com.njkremer.Sqlite.DataConnectionManager;
+import com.njkremer.Sqlite.SqlStatement;
 
 import java.util.List;
 
@@ -17,17 +19,21 @@ public class DevicesDAO extends AbstractDAO<Device> {
     }
 
     private DevicesDAO() {
-        super(new DatabaseJDBC());
+        DataConnectionManager.init("database.db");
     }
-
 
     @Override
     public void insert(Device item) {
-
+        try {
+            SqlStatement.insert(Device.class).execute();
+        } catch (DataConnectionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Device item) {
+        Device device = new Device(null, null);
 
     }
 
@@ -44,5 +50,10 @@ public class DevicesDAO extends AbstractDAO<Device> {
     @Override
     public List<Device> selectAll() {
         return null;
+    }
+
+    @Override
+    protected String tableName() {
+        return "devices";
     }
 }
