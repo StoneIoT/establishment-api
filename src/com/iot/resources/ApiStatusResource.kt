@@ -16,5 +16,4 @@ class ApiStatusResource {
     fun getClichedMessage(): String  {
         return "STATUS - OK";
     }
-
 }

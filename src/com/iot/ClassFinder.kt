@@ -33,7 +33,7 @@ object ClassFinder {
                 classes.addAll(find(child, resource))
             }
         } else if (resource.endsWith(CLASS_FILE_SUFFIX)) {
-            val endIndex = resource.length - CLASS_FILE_SUFFIX.length
+            val endIndex  = resource.length - CLASS_FILE_SUFFIX.length
             val className = resource.substring(0, endIndex)
             try {
                 classes.add(Class.forName(className))

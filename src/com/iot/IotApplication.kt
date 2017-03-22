@@ -1,5 +1,6 @@
 package com.iot
 
+import com.iot.database.dao.DevicesDAO
 import java.util.*
 import javax.ws.rs.ApplicationPath
 import javax.ws.rs.core.Application
@@ -10,13 +11,15 @@ import java.lang.System.out as sys
  */
 
 @ApplicationPath("/")
-class IotApplication : Application() {
+class IotApplication : Application {
+
+    constructor() {
+        DevicesDAO.getInstance()
+    }
 
     override fun getClasses(): Set<Class<*>> {
         return HashSet<Class<*>>().apply {
-
-            val allClasses = ClassFinder.find("com.iot.resources")
-            allClasses.forEach { add(Class.forName(it.name)) }
+            ClassFinder.find("com.iot.resources").forEach { add(Class.forName(it.name)) }
         }
     }
 }
